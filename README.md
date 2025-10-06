@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h> // Para a função exit()
+#include <stdio.h> // Para entrada e saída (printf, scanf)
+#include <math.h>  // Para funções matemáticas (sqrt, pow, sin, cos, etc.)
+#include <stdlib.h> // Para funções como abs, e para exit() se necessário
 
 // Função para exibir o menu de opções
 void exibirMenu() {
@@ -29,11 +29,6 @@ void exibirMenu() {
     printf("    18. Hipotenusa (hypot)\n");      
     printf("    19. Converter Radianos para Graus (rad2deg)\n"); 
     printf("    20. Converter Graus para Radianos (deg2rad)\n"); 
-    printf("    21. Seno Hiperbolico (sinh)\n");  
-    printf("    22. Cosseno Hiperbolico (cosh)\n"); 
-    printf("    23. Tangente Hiperbolica (tanh)\n"); 
-    printf("    24. Inverso (1/x)\n");           
-    printf("    25. Arredondar para o Inteiro mais Proximo (round)\n");
 
     printf("  0. Sair\n");
     printf("-----------------------------------\n");
@@ -236,40 +231,6 @@ int main() {
                 scanf("%lf", &num1);
                 resultado = num1 * (M_PI / 180.0);
                 printf("Resultado: %.4lf graus = %.4lf radianos\n", num1, resultado);
-                break;
-            case 21: // Seno Hiperbolico (sinh) - Adicionada
-                printf("Digite o numero: ");
-                scanf("%lf", &num1);
-                resultado = sinh(num1);
-                printf("Resultado: sinh(%.2lf) = %.4lf\n", num1, resultado);
-                break;
-            case 22: // Cosseno Hiperbolico (cosh) - Adicionada
-                printf("Digite o numero: ");
-                scanf("%lf", &num1);
-                resultado = cosh(num1);
-                printf("Resultado: cosh(%.2lf) = %.4lf\n", num1, resultado);
-                break;
-            case 23: // Tangente Hiperbolica (tanh) - Adicionada
-                printf("Digite o numero: ");
-                scanf("%lf", &num1);
-                resultado = tanh(num1);
-                printf("Resultado: tanh(%.2lf) = %.4lf\n", num1, resultado);
-                break;
-            case 24: // Inverso (1/x) - Adicionada
-                printf("Digite o numero: ");
-                scanf("%lf", &num1);
-                if (num1 != 0) {
-                    resultado = 1.0 / num1;
-                    printf("Resultado: 1/%.2lf = %.4lf\n", num1, resultado);
-                } else {
-                    printf("Erro: Nao e possivel calcular o inverso de zero.\n");
-                }
-                break;
-            case 25: // Arredondar para o Inteiro mais Proximo (round) - Adicionada
-                printf("Digite o numero: ");
-                scanf("%lf", &num1);
-                resultado = round(num1);
-                printf("Resultado: round(%.2lf) = %.0lf\n", num1, resultado);
                 break;
             case 0: // Sair
                 printf("Saindo da calculadora. Ate mais!\n");
