@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
+#include <stdlib.h> // Para a função exit()
 
+// Função para exibir o menu de opções
 void exibirMenu() {
     printf("\n--- Calculadora Cientifica em C ---\n");
     printf("Escolha uma operacao:\n");
@@ -18,9 +19,9 @@ void exibirMenu() {
     printf("    9. Tangente (tan)\n");
     printf("    10. Logaritmo Natural (ln)\n");
     printf("    11. Logaritmo Base 10 (log10)\n"); 
-    printf("    12. Exponencial (e^x)\n");        
+    printf("    12. Exponencial (e^x)\n");         
     printf("    13. Valor Absoluto (abs)\n");      
-    printf("    14. Arredondar para Cima (ceil)\n");
+    printf("    14. Arredondar para Cima (ceil)\n"); 
     printf("    15. Arredondar para Baixo (floor)\n"); 
     printf("    16. Fatorial (!)\n");              
     printf("  Operacoes Adicionais:\n");
@@ -38,10 +39,11 @@ void exibirMenu() {
     printf("-----------------------------------\n");
 }
 
+// Função para calcular o fatorial (inteiros não negativos)
 long long int fatorial(int n) {
     if (n < 0) {
         printf("Erro: Fatorial de numero negativo nao existe.\n");
-        return 0;
+        return 0; // Ou algum valor de erro
     }
     if (n == 0 || n == 1) {
         return 1;
@@ -57,7 +59,7 @@ long long int fatorial(int n) {
 int main() {
     int escolha;
     double num1, num2, resultado;
-    int int_num; 
+    int int_num; // Para funções que exigem um inteiro
 
     do {
         exibirMenu();
@@ -65,7 +67,7 @@ int main() {
         scanf("%d", &escolha);
 
         switch (escolha) {
-            case 1: 
+            case 1: // Adição
                 printf("Digite o primeiro numero: ");
                 scanf("%lf", &num1);
                 printf("Digite o segundo numero: ");
@@ -73,7 +75,7 @@ int main() {
                 resultado = num1 + num2;
                 printf("Resultado: %.2lf + %.2lf = %.2lf\n", num1, num2, resultado);
                 break;
-            case 2: 
+            case 2: // Subtração
                 printf("Digite o primeiro numero: ");
                 scanf("%lf", &num1);
                 printf("Digite o segundo numero: ");
@@ -81,7 +83,7 @@ int main() {
                 resultado = num1 - num2;
                 printf("Resultado: %.2lf - %.2lf = %.2lf\n", num1, num2, resultado);
                 break;
-            case 3: 
+            case 3: // Multiplicação
                 printf("Digite o primeiro numero: ");
                 scanf("%lf", &num1);
                 printf("Digite o segundo numero: ");
@@ -89,7 +91,7 @@ int main() {
                 resultado = num1 * num2;
                 printf("Resultado: %.2lf * %.2lf = %.2lf\n", num1, num2, resultado);
                 break;
-            case 4:
+            case 4: // Divisão
                 printf("Digite o dividendo: ");
                 scanf("%lf", &num1);
                 printf("Digite o divisor: ");
@@ -101,7 +103,7 @@ int main() {
                     printf("Erro: Divisao por zero!\n");
                 }
                 break;
-            case 5: 
+            case 5: // Potência
                 printf("Digite a base: ");
                 scanf("%lf", &num1);
                 printf("Digite o expoente: ");
@@ -109,7 +111,7 @@ int main() {
                 resultado = pow(num1, num2);
                 printf("Resultado: %.2lf ^ %.2lf = %.2lf\n", num1, num2, resultado);
                 break;
-            case 6: 
+            case 6: // Raiz Quadrada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 if (num1 >= 0) {
@@ -119,30 +121,30 @@ int main() {
                     printf("Erro: Nao e possivel calcular a raiz quadrada de um numero negativo.\n");
                 }
                 break;
-            case 7: 
+            case 7: // Seno (em radianos)
                 printf("Digite o angulo em radianos: ");
                 scanf("%lf", &num1);
                 resultado = sin(num1);
                 printf("Resultado: Seno(%.4lf rad) = %.4lf\n", num1, resultado);
                 break;
-            case 8: 
+            case 8: // Cosseno (em radianos)
                 printf("Digite o angulo em radianos: ");
                 scanf("%lf", &num1);
                 resultado = cos(num1);
                 printf("Resultado: Cosseno(%.4lf rad) = %.4lf\n", num1, resultado);
                 break;
-            case 9: 
+            case 9: // Tangente (em radianos)
                 printf("Digite o angulo em radianos: ");
                 scanf("%lf", &num1);
-        
-                if (fmod(num1, M_PI / 2) != 0 || (int)(num1 / (M_PI / 2)) % 2 == 0) {
+                // Verifica se o ângulo não é um múltiplo ímpar de PI/2, onde a tangente é indefinida
+                if (fmod(num1, M_PI / 2) != 0 || (int)(num1 / (M_PI / 2)) % 2 == 0) { // Simplificação, mas cuidado com precisão de float
                      resultado = tan(num1);
                      printf("Resultado: Tangente(%.4lf rad) = %.4lf\n", num1, resultado);
                 } else {
                      printf("Erro: Tangente indefinida para este angulo (multiplo impar de PI/2).\n");
                 }
                 break;
-            case 10:
+            case 10: // Logaritmo Natural (ln)
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 if (num1 > 0) {
@@ -152,7 +154,7 @@ int main() {
                     printf("Erro: Logaritmo natural de numero nao positivo e indefinido.\n");
                 }
                 break;
-            case 11:
+            case 11: // Logaritmo Base 10 (log10) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 if (num1 > 0) {
@@ -162,56 +164,56 @@ int main() {
                     printf("Erro: Logaritmo base 10 de numero nao positivo e indefinido.\n");
                 }
                 break;
-            case 12: 
+            case 12: // Exponencial (e^x) - Adicionada
                 printf("Digite o expoente: ");
                 scanf("%lf", &num1);
                 resultado = exp(num1);
                 printf("Resultado: e^(%.2lf) = %.4lf\n", num1, resultado);
                 break;
-            case 13:
+            case 13: // Valor Absoluto (abs para inteiros, fabs para doubles) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
-                resultado = fabs(num1); 
+                resultado = fabs(num1); // fabs para double
                 printf("Resultado: |%.2lf| = %.2lf\n", num1, resultado);
                 break;
-            case 14: 
+            case 14: // Arredondar para Cima (ceil) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 resultado = ceil(num1);
                 printf("Resultado: ceil(%.2lf) = %.2lf\n", num1, resultado);
                 break;
-            case 15: 
+            case 15: // Arredondar para Baixo (floor) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 resultado = floor(num1);
                 printf("Resultado: floor(%.2lf) = %.2lf\n", num1, resultado);
                 break;
-            case 16: 
+            case 16: // Fatorial
                 printf("Digite um numero inteiro nao negativo: ");
                 scanf("%d", &int_num);
                 if (int_num >= 0) {
                     long long int fat_resultado = fatorial(int_num);
-                    if (fat_resultado != 0) { 
+                    if (fat_resultado != 0) { // 0 é o valor de erro retornado por fatorial
                         printf("Resultado: %d! = %lld\n", int_num, fat_resultado);
                     }
                 } else {
                     printf("Erro: Fatorial de numero negativo nao existe.\n");
                 }
                 break;
-            case 17: 
+            case 17: // Resto da Divisao (Modulo %) - Adicionada
                 printf("Digite o dividendo (inteiro): ");
-                scanf("%lf", &num1);
+                scanf("%lf", &num1); // Ler como double para consistência, converter para int
                 printf("Digite o divisor (inteiro): ");
-                scanf("%lf", &num2); 
+                scanf("%lf", &num2); // Ler como double, converter para int
 
                 if ((int)num2 != 0) {
-                    resultado = fmod(num1, num2); 
+                    resultado = fmod(num1, num2); // fmod para doubles
                     printf("Resultado: %.0lf %% %.0lf = %.0lf\n", num1, num2, resultado);
                 } else {
                     printf("Erro: Divisao por zero para o modulo!\n");
                 }
                 break;
-            case 18:
+            case 18: // Hipotenusa (hypot) - Adicionada
                 printf("Digite o comprimento do primeiro cateto: ");
                 scanf("%lf", &num1);
                 printf("Digite o comprimento do segundo cateto: ");
@@ -223,37 +225,37 @@ int main() {
                     printf("Erro: Catetos devem ser valores nao negativos.\n");
                 }
                 break;
-            case 19: 
+            case 19: // Converter Radianos para Graus (rad2deg) - Adicionada
                 printf("Digite o angulo em radianos: ");
                 scanf("%lf", &num1);
                 resultado = num1 * (180.0 / M_PI);
                 printf("Resultado: %.4lf radianos = %.4lf graus\n", num1, resultado);
                 break;
-            case 20: 
+            case 20: // Converter Graus para Radianos (deg2rad) - Adicionada
                 printf("Digite o angulo em graus: ");
                 scanf("%lf", &num1);
                 resultado = num1 * (M_PI / 180.0);
                 printf("Resultado: %.4lf graus = %.4lf radianos\n", num1, resultado);
                 break;
-            case 21:
+            case 21: // Seno Hiperbolico (sinh) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 resultado = sinh(num1);
                 printf("Resultado: sinh(%.2lf) = %.4lf\n", num1, resultado);
                 break;
-            case 22:
+            case 22: // Cosseno Hiperbolico (cosh) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 resultado = cosh(num1);
                 printf("Resultado: cosh(%.2lf) = %.4lf\n", num1, resultado);
                 break;
-            case 23:
+            case 23: // Tangente Hiperbolica (tanh) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 resultado = tanh(num1);
                 printf("Resultado: tanh(%.2lf) = %.4lf\n", num1, resultado);
                 break;
-            case 24: 
+            case 24: // Inverso (1/x) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 if (num1 != 0) {
@@ -263,21 +265,21 @@ int main() {
                     printf("Erro: Nao e possivel calcular o inverso de zero.\n");
                 }
                 break;
-            case 25:
+            case 25: // Arredondar para o Inteiro mais Proximo (round) - Adicionada
                 printf("Digite o numero: ");
                 scanf("%lf", &num1);
                 resultado = round(num1);
                 printf("Resultado: round(%.2lf) = %.0lf\n", num1, resultado);
                 break;
-            case 0: 
+            case 0: // Sair
                 printf("Saindo da calculadora. Ate mais!\n");
                 break;
             default:
                 printf("Opcao invalida. Por favor, escolha uma opcao valida.\n");
         }
         printf("\nPressione Enter para continuar...");
-        getchar();
-        getchar(); 
+        getchar(); // Consome o '\n' restante do scanf
+        getchar(); // Espera por outro Enter
     } while (escolha != 0);
 
     return 0;
